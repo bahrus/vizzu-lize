@@ -1,12 +1,12 @@
 //import Vizzu from 'node_modules/vizzu/dist/vizzu.d.js';
 
 export interface VizzuLizeProps {
-    data: any,
+    options: any,
     chart: any
 }
 
 export interface VizzuLizeActions{
     
-    onData(self: this): void;
+    onOptions(self: this): void;
 }
 
