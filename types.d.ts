@@ -1,8 +1,8 @@
-import Vizzu from 'node_modules/vizzu/dist/vizzu.d.js';
+//import Vizzu from 'node_modules/vizzu/dist/vizzu.d.js';
 
 export interface VizzuLizeProps {
     data: any,
-    chart: Vizzu
+    chart: any
 }
 
 export interface VizzuLizeActions{

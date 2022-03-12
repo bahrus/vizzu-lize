@@ -1,10 +1,9 @@
-import Vizzux from 'node_modules/vizzu/dist/vizzu.d.js';
-// @ts-ignore
-import Vizzu from 'vizzu/dist/vizzu.min.js';
 import {XE} from 'xtal-element/src/XE.js';
 import {VizzuLizeActions, VizzuLizeProps} from './types';
 
-declare class Vizzu extends Vizzux{}
+declare class Vizzu{
+  constructor(element: Element, {data: any})
+}
 
 // let data = {
 //     series: [
@@ -19,8 +18,10 @@ declare class Vizzu extends Vizzux{}
 //   let chart = new Vizzu('myVizzu', { data });
 
 export class VizzuLize extends HTMLElement implements VizzuLizeActions{
-  onData({data}: this){
-    this.chart = new Vizzu(this, {data});
+  async onData({data}: this){
+    const Vizzu = (await import('vizzu/dist/vizzu.min.js')).default;
+    this.chart = new Vizzu(this);
+    this.chart.animate(data);
   }
 }
 
@@ -32,7 +33,8 @@ const xe = new XE<VizzuLizeProps, VizzuLizeActions>({
     actions:{
       onData: 'data'
     }
-  }
+  },
+  superclass: VizzuLize,
 });
 
 

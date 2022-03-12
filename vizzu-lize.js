@@ -1,4 +1,3 @@
-import Vizzux from 'node_modules/vizzu/dist/vizzu.d.js';
 import { XE } from 'xtal-element/src/XE.js';
 // let data = {
 //     series: [
@@ -9,8 +8,10 @@ import { XE } from 'xtal-element/src/XE.js';
 //   };
 //   let chart = new Vizzu('myVizzu', { data });
 export class VizzuLize extends HTMLElement {
-    onData({ data }) {
-        this.chart = new Vizzu(this, { data });
+    async onData({ data }) {
+        const Vizzu = (await import('vizzu/dist/vizzu.min.js')).default;
+        this.chart = new Vizzu(this);
+        this.chart.animate(data);
     }
 }
 const xe = new XE({
@@ -19,5 +20,6 @@ const xe = new XE({
         actions: {
             onData: 'data'
         }
-    }
+    },
+    superclass: VizzuLize,
 });
