@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "xtal-element": "0.0.484",
-    "vizzu": "0.4.5"
+    "vizzu": "0.4.5"  
+  },
+  "devDependencies": {
+    "xtal-test": "0.0.55"
   },
   "repository": {
     "type": "git",
