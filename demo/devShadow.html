@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <vizzu-lize id='vl' style="width:800px; height:480px;"></vizzu-lize>
+    <template shadowroot='open'>
+        <vizzu-lize id='vl' style="width:800px; height:480px;"></vizzu-lize>
+    </template>
+    
     <script type='importmap'>
     {
         "imports":{
@@ -23,23 +26,23 @@
     <script type='module'>
         import { data } from 'https://lib.vizzuhq.com/test/integration/test_data/chart_types_eu.js';
         const test = {
-          data,
-          config: {
+            data,
+            config: {
             channels: {
-              x: { set: ['Year'] },
-              y: { set: ['Value 5 (+/-)'] },
-              label: { set: ['Value 5 (+/-)'] }
+                x: { set: ['Year'] },
+                y: { set: ['Value 5 (+/-)'] },
+                label: { set: ['Value 5 (+/-)'] }
             },
             title: 'Histogram',
             align: 'none'
-          },
-          /* Spaces between markers should be
-          eliminated on this chart. */
-          style: { 
-            'plot.marker.rectangleSpacing': 0.07
-          }
-      };
-      vl.options = test;
+            },
+            /* Spaces between markers should be
+            eliminated on this chart. */
+            style: { 
+                'plot.marker.rectangleSpacing': 0.07
+            }
+        };
+        document.body.shadowRoot.querySelector('#vl').options = test;
     </script>
 </body>
 </html>
