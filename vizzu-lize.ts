@@ -1,4 +1,4 @@
-import {XE} from 'xtal-element/src/XE.js';
+import {CE} from 'trans-render/lib/CE.js';
 import {VizzuLizeActions, VizzuLizeProps} from './types';
 
 declare class Vizzu{
@@ -6,20 +6,25 @@ declare class Vizzu{
 }
 
 export class VizzuLize extends HTMLElement implements VizzuLizeActions{
-  async onOptions({options}: this){
+  async playAnimation({data, configs}: this) {
     const Vizzu = (await import('vizzu/dist/vizzu.min.js')).default;
     this.chart = new Vizzu(this);
-    this.chart.animate(options);
+    this.chart.animate({data, config: configs[0]});
+    for(let i = 1, ii = configs.length; i < ii; i++){
+        this.chart.animate({config: configs[i]});
+    }
   }
 }
 
 export interface VizzuLize extends VizzuLizeProps{}
 
-const xe = new XE<VizzuLizeProps, VizzuLizeActions>({
+const ce = new CE<VizzuLizeProps, VizzuLizeActions>({
   config:{
     tagName: 'vizzu-lize',
     actions:{
-      onOptions: 'options'
+      playAnimation: {
+        ifAllOf: ['data', 'configs'],
+      }
     }
   },
   superclass: VizzuLize,

@@ -18,7 +18,8 @@
     "vizzu": "0.4.7"  
   },
   "devDependencies": {
-    "xtal-test": "0.0.55"
+    "xtal-test": "0.0.55",
+    "be-reformable": "0.0.34"
   },
   "repository": {
     "type": "git",
